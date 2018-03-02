@@ -22,9 +22,13 @@ node {
   stage('Build Docker') {
       // Run the maven build
        if (isUnix()) {
-        app = docker.build("hello-world")
+          app = docker.build("hello-world")
+          sh "'docker tag ubuntu:16.04 localhost:5000/hello-world'"
        }
-    echo "Built......."
+   
+   }
+   stage('Tag Docker') {
+      sh "'docker tag ubuntu:16.04 localhost:5000/hello-world'"
    }
    stage('Results') {
     echo "Tests Ran..."
