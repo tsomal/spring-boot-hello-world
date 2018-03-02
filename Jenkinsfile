@@ -1,6 +1,7 @@
 node {
   def mvnHome
   def app
+  def commitHash
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
       git 'https://github.com/tsomal/spring-boot-hello-world.git'
@@ -8,6 +9,7 @@ node {
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
       mvnHome = tool 'M3'
+      commitHash = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
    }
    stage('Build') {
       // Run the maven build
@@ -22,7 +24,7 @@ node {
   stage('Build Docker') {
       // Run the maven build
        if (isUnix()) {
-          app = docker.build("localhost:5000/hello-world")
+         app = docker.build("localhost:5000/hello-world-${commitHash}")
           app.push();
        }
    
