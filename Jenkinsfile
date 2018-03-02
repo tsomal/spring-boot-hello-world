@@ -29,7 +29,8 @@ node {
    }
    stage('List Images') {
       //sh "'docker tag hello-world localhost:5000/hello-world-private-registry'"
-     sh "curl -X GET http://localhost:5000/v2/_catalog"
+     //sh "curl -X GET http://localhost:5000/v2/_catalog"
+     sh "hostname -I"
    }
    stage('Results') {
     echo "Tests Ran..."
