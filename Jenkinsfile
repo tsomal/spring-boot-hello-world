@@ -11,8 +11,8 @@ node {
    stage('Build') {
       // Run the maven build
        if (isUnix()) {
-         // sh "'${mvnHome}/bin/mvn' clean compile package "
-         echo 'hello world'
+          sh "'${mvnHome}/bin/mvn' clean compile package "
+        // echo 'hello world'
        } else {
           bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
        }
