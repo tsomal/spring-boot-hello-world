@@ -22,13 +22,13 @@ node {
   stage('Build Docker') {
       // Run the maven build
        if (isUnix()) {
-          app = docker.build("hello-world")
-         
+          app = docker.build("localhost:5000/hello-world")
+          app.push();
        }
    
    }
    stage('Tag Docker') {
-      sh "'docker tag hello-world localhost:5000/hello-world-private-registry'"
+      //sh "'docker tag hello-world localhost:5000/hello-world-private-registry'"
    }
    stage('Results') {
     echo "Tests Ran..."
