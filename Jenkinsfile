@@ -28,7 +28,7 @@ node {
    
    }
    stage('Tag Docker') {
-      sh "'docker tag hello-world localhost:5000/hello-world'"
+      sh "'docker tag hello-world localhost:5000/hello-world-private-registry'"
    }
    stage('Results') {
     echo "Tests Ran..."
