@@ -23,7 +23,7 @@ node {
       // Run the maven build
        if (isUnix()) {
           app = docker.build("hello-world")
-          docker.images();
+         
        }
    
    }
