@@ -1,5 +1,6 @@
 node {
   def mvnHome
+  def app
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
       git 'https://github.com/tsomal/spring-boot-hello-world.git'
@@ -15,6 +16,13 @@ node {
         // echo 'hello world'
        } else {
           bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+       }
+    echo "Built......."
+   }
+  stage('Build Docker') {
+      // Run the maven build
+       if (isUnix()) {
+        app = docker.build("hello-world")
        }
     echo "Built......."
    }
