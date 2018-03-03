@@ -24,7 +24,7 @@ node {
   stage('Build Docker') {
       // Run the maven build
        if (isUnix()) {
-         app = docker.build("10.157.137.102:5000/hello-world-${commitHash}")
+         app = docker.build("localhost:5000/hello-world-${commitHash}")
           app.push();
        }
    
