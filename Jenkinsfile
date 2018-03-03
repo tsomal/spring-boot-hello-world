@@ -19,7 +19,7 @@ node {
        } else {
           bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
        }
-    echo "Built......."
+   
    }
   stage('Build Docker') {
       // Run the maven build
